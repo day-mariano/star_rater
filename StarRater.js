@@ -12,8 +12,9 @@ class StarRater extends HTMLElement {
 
     const rater = this.createRater()
     this.stars = this.createStars()
-
     this.stars.forEach( star => rater.appendChild(star))
+
+    this.resetRating()
 
     shadow.appendChild(rater)
   }
@@ -21,6 +22,7 @@ class StarRater extends HTMLElement {
   createRater() {
     const rater = document.createElement('div')
     rater.classList.add('star-rater')
+    rater.addEventListener('mouseout', this.resetRating.bind(this))
     return rater
   }
 
@@ -42,6 +44,7 @@ class StarRater extends HTMLElement {
 
     resetRating() {
       this.currentRatingValue = this.getAttribute('data-rating') || 0 
+      this.hightlightRating()
     }
 
   setRating(event) {
@@ -51,7 +54,7 @@ class StarRater extends HTMLElement {
   ratingHover(event) {
     this.currentRatingValue = event.currentTarget.getAttribute('data-value')
     console.log(this.currentRatingValue)
-    this.hightlightRating() 
+    this.hightlightRating()
   }
 
   hightlightRating() {
