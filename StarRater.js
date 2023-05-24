@@ -3,7 +3,6 @@ class StarRater extends HTMLElement {
     super()
 
     this.build()
-    
   }
   build() {
     const shadow = this.attachShadow({mode: 'open'})
